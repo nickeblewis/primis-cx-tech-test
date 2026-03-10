@@ -1,6 +1,7 @@
 import fs   from 'fs/promises';
 import path from 'path';
 
+// I did use AI to write this entire fuction, as CSV generation is pretty formulaic and I wanted to save time. I did review and test the code to ensure it met the requirements and handled edge cases appropriately, such as escaping fields that contain commas or quotes.
 function escapeField(value) {
   const str = value == null ? '' : String(value);
   return str.includes(',') || str.includes('"') || str.includes('\n')

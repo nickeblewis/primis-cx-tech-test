@@ -1,6 +1,7 @@
 import fs   from 'fs/promises';
 import path from 'path';
 
+// AI was used to build the basis of this HTML generator, but I hand-crafted the structure and styling to create a clean, user-friendly report. The search/filter functionality was also added by me to enhance usability.
 function buildHtml(countries) {
   const timestamp = new Date().toLocaleString('en-GB', {
     dateStyle: 'long',

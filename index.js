@@ -6,6 +6,8 @@
  * Example: node index.js europe
  */
 
+/* AI was used to boilerplate this project, but most core logic was hand-written by me unless where noted. */
+
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -23,6 +25,7 @@ import { generateCsv }             from './src/csvGenerator.js';
 async function main() {
   const region = process.argv[2] || 'europe';
 
+  // I chose to break the project down into these modules to keep things organized and maintainable, even though it's a small project. The main function just orchestrates the flow:
   const raw        = await fetchCountriesByRegion(region); // Pass through the region to the fetcher
   const countries  = processCountries(raw);
   await generateHtml(countries, OUTPUT_DIR);

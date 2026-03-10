@@ -1,4 +1,6 @@
 function processCountries(raw) {
+// AI (claude code) was used to write this function, which takes the raw API response and transforms it into a more usable format for our HTML and CSV generators.
+// It also handles missing or malformed data gracefully by providing 'N/A' defaults where appropriate.
   if (!Array.isArray(raw)) return [];
 
   return raw
