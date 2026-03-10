@@ -1,16 +1,20 @@
-require('dotenv').config();
+import 'dotenv/config';
 
 async function fetchCountriesByRegion(region = 'europe') {
   const url = `${process.env.BASE_URL}/region/${region}`;
-  const response = await fetch(url);
 
-  if (!response.ok) {
-    throw new Error(`Failed to fetch region "${region}": ${response.status} ${response.statusText}`);
+  let response;
+  try {
+    response = await fetch(url);
+  } catch (err) {
+    throw new Error(`Network error fetching region "${region}": ${err.message}`);
   }
 
-  const data = await response.json();
-  console.log(data);
-  return data;
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status} ${response.statusText} fetching region "${region}"`);
+  }
+
+  return response.json();
 }
 
-module.exports = { fetchCountriesByRegion };
+export { fetchCountriesByRegion };

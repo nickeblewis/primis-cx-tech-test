@@ -3,4 +3,4 @@ function processCountries(raw) {
   return raw;
 }
 
-module.exports = { processCountries };
+export { processCountries };

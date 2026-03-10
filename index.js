@@ -6,17 +6,19 @@
  * Example: node index.js europe
  */
 
-const path = require('path');
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 // -- Config
 const BASE_URL = 'https://restcountries.com/v3.1';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT_DIR = path.resolve(__dirname, 'output');
 
 // -- Modules
-const { fetchCountriesByRegion } = require('./src/fetcher');
-const { processCountries }        = require('./src/processor');
-const { generateHtml }            = require('./src/htmlgenerator');
-const { generateCsv }             = require('./src/csvGenerator');
+import { fetchCountriesByRegion } from './src/fetcher.js';
+import { processCountries }        from './src/processor.js';
+import { generateHtml }            from './src/htmlGenerator.js';
+import { generateCsv }             from './src/csvGenerator.js';
 
 // ─── HTTP helpers ─────────────────────────────────────────────────────────────
 
@@ -67,6 +69,6 @@ async function main() {
 }
 
 main().catch(err => {
-  console.error('Error:', err.message);
+  console.error(`Error: ${err.message}`);
   process.exit(1);
 });
