@@ -64,7 +64,7 @@ async function main() {
   const countries  = processCountries(raw);
   await generateHtml(countries, OUTPUT_DIR);
   await generateCsv(countries, OUTPUT_DIR);
-
+console.log(countries);
   console.log(`Fetched ${countries.length} countries. Files written to ${OUTPUT_DIR}`);
 }
 
