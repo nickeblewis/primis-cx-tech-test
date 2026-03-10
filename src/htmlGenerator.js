@@ -78,11 +78,34 @@ function buildHtml(countries) {
     td:nth-child(4) { text-align: right; font-variant-numeric: tabular-nums; }
 
     img { display: block; }
+
+    .search-bar {
+      margin-bottom: 1rem;
+    }
+
+    #search {
+      padding: 8px 12px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 280px;
+    }
+
+    #search:focus {
+      outline: none;
+      border-color: #2c3e50;
+    }
+
+    tbody tr.hidden { display: none; }
   </style>
 </head>
 <body>
   <h1>Country Report</h1>
   <p class="meta">Generated on ${timestamp} &mdash; ${countries.length} countries</p>
+
+  <div class="search-bar">
+    <input type="search" id="search" placeholder="Filter countries&hellip;" autocomplete="off">
+  </div>
 
   <table>
     <thead>
@@ -98,6 +121,16 @@ function buildHtml(countries) {
     <tbody>${rows}
     </tbody>
   </table>
+  <script>
+    const input = document.getElementById('search');
+    const rows = document.querySelectorAll('tbody tr');
+    input.addEventListener('input', () => {
+      const term = input.value.toLowerCase();
+      rows.forEach(row => {
+        row.classList.toggle('hidden', !row.textContent.toLowerCase().includes(term));
+      });
+    });
+  </script>
 </body>
 </html>`;
 }
